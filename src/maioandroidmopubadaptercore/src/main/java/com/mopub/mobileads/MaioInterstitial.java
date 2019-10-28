@@ -36,6 +36,8 @@ public class MaioInterstitial extends CustomEventInterstitial {
         PersonalInfoManager personalInfoManager = MoPub.getPersonalInformationManager();
 
         if (personalInfoManager != null && personalInfoManager.gdprApplies() == Boolean.TRUE) {
+            customEventInterstitialListener.onInterstitialFailed(
+                    MoPubErrorCode.NO_FILL);
             return;
         }
 

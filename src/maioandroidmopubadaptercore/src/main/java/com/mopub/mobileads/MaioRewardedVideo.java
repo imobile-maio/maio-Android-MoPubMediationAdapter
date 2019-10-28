@@ -44,6 +44,8 @@ public class MaioRewardedVideo extends CustomEventRewardedVideo {
         PersonalInfoManager personalInfoManager = MoPub.getPersonalInformationManager();
 
         if (personalInfoManager != null && personalInfoManager.gdprApplies() == Boolean.TRUE) {
+            MoPubRewardedVideoManager.onRewardedVideoLoadFailure(MaioRewardedVideo.class, "maio",
+                    getMoPubErrorCode(FailNotificationReason.AD_STOCK_OUT));
             return false;
         }
 
