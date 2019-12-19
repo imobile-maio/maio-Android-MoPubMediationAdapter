@@ -66,3 +66,7 @@
     ```
 1. Go to the [release page](https://github.com/imobile-maio/maio-Android-MoPubMediationAdapter/releases) and download the newest `MaioMoPubAdapter_v*.*.*.jar`.
 1. Copy `MaioMoPubAdapter_v*.*.*.jar` to the `libs/` folder in your app.
+
+## GDPR
+
+Maio does not currently support GDPR so setting `[PersonalInfoManager.forceGdprApplies()]` will stop you from receiving maio ads.
