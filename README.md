@@ -19,8 +19,6 @@
         - Custom Event Class Data
             ```json
             {"mediaId": "YOUR-MEDIA-ID", "zoneId": "YOUR-ZONE-ID"}
-            or
-            {"mediaId": "YOUR-MEDIA-ID"}
             ```
     - Rewarded Video
         - Custom Event Class
@@ -28,8 +26,6 @@
         - Custom Event Class Data
             ```json
             {"mediaId": "YOUR-MEDIA-ID", "zoneId": "YOUR-ZONE-ID"}
-            or
-            {"mediaId": "YOUR-MEDIA-ID"}
             ```
 
 ## Implement `maio Android SDK` and `MaioMopubAdapter` to your Project
