@@ -23,11 +23,15 @@ import static com.mopub.mobileads.MaioUtils.trace;
 
 public class MaioBaseAd extends BaseAd {
 
-    private final static String TAG = "MaioBaseAd";
+    private final MaioAdType _maioAdType;
     private MaioCredentials _credentials;
     private MaioAdsListenerInterface _listener;
     private boolean _isAdRequested;
     private final static Object _adRequestLockObject = new Object();
+
+    public MaioBaseAd(MaioAdType maioAdType) {
+        _maioAdType = maioAdType;
+    }
 
     @Override
     protected void load(@NonNull final Context context, @NonNull final AdData adData) {
@@ -75,15 +79,6 @@ public class MaioBaseAd extends BaseAd {
                         return;
                     }
                     _isAdRequested = false;
-                }
-
-                if (mLoadListener != null) {
-
-                    if (newValue) {
-                        mLoadListener.onAdLoaded();
-                    } else {
-                        mLoadListener.onAdLoadFailed(MoPubErrorCode.NO_FILL);
-                    }
                 }
             }
 
@@ -139,6 +134,29 @@ public class MaioBaseAd extends BaseAd {
 
                 if (mInteractionListener != null) {
                     mInteractionListener.onAdShown();
+
+                }
+            }
+
+            @Override
+            public void onFinishedAd(int playtime,
+                                     boolean skipped,
+                                     int duration,
+                                     String zoneId) {
+                MaioUtils.trace();
+
+                if(_maioAdType != MaioAdType.Rewarded)
+                    return;
+
+                if (isTargetZone(zoneId) == false) {
+                    return;
+                }
+
+                MoPubReward reward = skipped
+                        ? MoPubReward.failure()
+                        : MoPubReward.success("", 0);
+                if (mInteractionListener != null) {
+                    mInteractionListener.onAdComplete(reward);
                 }
             }
         };
