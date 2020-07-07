@@ -37,7 +37,7 @@ public class MaioBaseAd extends BaseAd {
     protected void load(@NonNull final Context context, @NonNull final AdData adData) {
         trace();
 
-        if(_isAdRequested) return;
+        if (_isAdRequested) return;
 
         if (MaioAdManager.getInstance().isInitialized() == false) {
             if (mLoadListener != null) {
@@ -61,13 +61,14 @@ public class MaioBaseAd extends BaseAd {
             _isAdRequested = false;
         }
     }
-        private void maioInit() {
 
-            if(!MaioAdManager.getInstance().isInitialized()) {
-                _isAdRequested = true;
-            }
+    private void maioInit() {
 
-            _listener = new MaioAdsListener() {
+        if (!MaioAdManager.getInstance().isInitialized()) {
+            _isAdRequested = true;
+        }
+
+        _listener = new MaioAdsListener() {
 
             @Override
             public void onChangedCanShow(String zoneId, boolean newValue) {
@@ -85,12 +86,11 @@ public class MaioBaseAd extends BaseAd {
                     _isAdRequested = false;
                 }
 
-                if(newValue == true) {
+                if (newValue == true) {
                     if (mLoadListener != null) {
                         mLoadListener.onAdLoaded();
                     }
-                }
-                else {
+                } else {
                     if (mLoadListener != null) {
                         mLoadListener.onAdLoadFailed(MoPubErrorCode.NO_FILL);
                     }
@@ -160,7 +160,7 @@ public class MaioBaseAd extends BaseAd {
                                      String zoneId) {
                 MaioUtils.trace();
 
-                if(_maioAdType != MaioAdType.Rewarded)
+                if (_maioAdType != MaioAdType.Rewarded)
                     return;
 
                 if (isTargetZone(zoneId) == false) {
@@ -249,7 +249,7 @@ public class MaioBaseAd extends BaseAd {
     private boolean isTargetZone(String receivedZoneId) {
         trace();
 
-        if(_credentials == null){
+        if (_credentials == null) {
             return true;
         }
         String zoneId = _credentials.getZoneId();
@@ -258,9 +258,9 @@ public class MaioBaseAd extends BaseAd {
 
     @NonNull
     public String getAdNetworkId() {
-        if(_credentials == null){
+        if (_credentials == null) {
             return "";
         }
-        return  _credentials.getZoneId() == null ? "" : _credentials.getZoneId();
+        return _credentials.getZoneId() == null ? "" : _credentials.getZoneId();
     }
 }
