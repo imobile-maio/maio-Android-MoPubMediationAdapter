@@ -37,6 +37,8 @@ public class MaioBaseAd extends BaseAd {
     protected void load(@NonNull final Context context, @NonNull final AdData adData) {
         trace();
 
+        if(_isAdRequested) return;
+
         if (MaioAdManager.getInstance().isInitialized() == false) {
             if (mLoadListener != null) {
                 mLoadListener.onAdLoadFailed(MoPubErrorCode.ADAPTER_CONFIGURATION_ERROR);
@@ -79,6 +81,17 @@ public class MaioBaseAd extends BaseAd {
                         return;
                     }
                     _isAdRequested = false;
+                }
+
+                if(newValue == true) {
+                    if (mLoadListener != null) {
+                        mLoadListener.onAdLoaded();
+                    }
+                }
+                else {
+                    if (mLoadListener != null) {
+                        mLoadListener.onAdLoadFailed(MoPubErrorCode.NO_FILL);
+                    }
                 }
             }
 
@@ -166,6 +179,9 @@ public class MaioBaseAd extends BaseAd {
     protected boolean checkAndInitializeSdk(@NonNull final Activity launcherActivity, @NonNull final AdData adData)
             throws Exception {
         MaioUtils.trace();
+
+        if(MaioAdManager.getInstance().isInitialized()) return true;
+
         if (validate(adData)) return false;
 
         maioInit();
