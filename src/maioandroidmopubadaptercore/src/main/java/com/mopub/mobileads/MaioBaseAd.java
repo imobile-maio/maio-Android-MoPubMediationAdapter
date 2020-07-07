@@ -63,9 +63,11 @@ public class MaioBaseAd extends BaseAd {
     }
         private void maioInit() {
 
-        _isAdRequested = true;
+            if(!MaioAdManager.getInstance().isInitialized()) {
+                _isAdRequested = true;
+            }
 
-        _listener = new MaioAdsListener() {
+            _listener = new MaioAdsListener() {
 
             @Override
             public void onChangedCanShow(String zoneId, boolean newValue) {
@@ -181,8 +183,6 @@ public class MaioBaseAd extends BaseAd {
         MaioUtils.trace();
 
         if (validate(adData)) return false;
-
-        if(MaioAdManager.getInstance().isInitialized()) return true;
 
         maioInit();
 
