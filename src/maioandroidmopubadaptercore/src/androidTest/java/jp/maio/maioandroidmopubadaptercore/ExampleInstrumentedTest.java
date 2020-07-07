@@ -2,7 +2,7 @@ package jp.maio.maioandroidmopubadaptercore;
 
 import android.content.Context;
 
-import androidx.test.InstrumentationRegistry;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 
 import org.junit.Test;
