@@ -34,7 +34,7 @@ dependencies {
 
 
     dependencies {
-        implementation('com.mopub:mopub-sdk-fullscreen:5.13.0@aar') {
+        implementation('com.mopub:mopub-sdk-fullscreen:5.13.1@aar') {
             transitive = true
         }
     }
