@@ -180,9 +180,9 @@ public class MaioBaseAd extends BaseAd {
             throws Exception {
         MaioUtils.trace();
 
-        if(MaioAdManager.getInstance().isInitialized()) return true;
-
         if (validate(adData)) return false;
+
+        if(MaioAdManager.getInstance().isInitialized()) return true;
 
         maioInit();
 
