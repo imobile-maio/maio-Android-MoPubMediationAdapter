@@ -2,8 +2,9 @@ package com.mopub.mobileads;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.mopub.common.BaseAdapterConfiguration;
 import com.mopub.common.OnNetworkInitializationFinishedListener;
@@ -21,7 +22,7 @@ import static com.mopub.common.logging.MoPubLog.SdkLogEvent.CUSTOM_WITH_THROWABL
 public class MaioAdapterConfiguration extends BaseAdapterConfiguration {
 
     // Adapter's keys
-    private static final String ADAPTER_VERSION = "1.1.9.2";
+    private static final String ADAPTER_VERSION = "1.1.11.0";
     private static final String ADAPTER_NAME = MaioAdapterConfiguration.class.getSimpleName();
     private static final String MOPUB_NETWORK_NAME = "maio";
 
