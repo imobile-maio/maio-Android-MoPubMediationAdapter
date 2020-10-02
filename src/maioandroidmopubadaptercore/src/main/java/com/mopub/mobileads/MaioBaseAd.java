@@ -2,6 +2,7 @@ package com.mopub.mobileads;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -66,6 +67,22 @@ public class MaioBaseAd extends BaseAd {
 
         if (!MaioAdManager.getInstance().isInitialized()) {
             _isAdRequested = true;
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    synchronized (_adRequestLockObject) {
+                    if(_isAdRequested) {
+                        _isAdRequested = false;
+
+                        if (mLoadListener != null) {
+                            mLoadListener.onAdLoadFailed(MoPubErrorCode.NO_FILL);
+
+                        }
+                    }
+                    }
+                }
+            }, MaioAdManager.getInstance().initTimeout());
         }
 
         _listener = new MaioAdsListener() {
@@ -73,6 +90,12 @@ public class MaioBaseAd extends BaseAd {
             @Override
             public void onChangedCanShow(String zoneId, boolean newValue) {
                 trace();
+
+                if(zoneId.isEmpty()) {
+                    if (mLoadListener != null) {
+                        mLoadListener.onAdLoadFailed(MoPubErrorCode.NO_FILL);
+                    }
+                }
 
                 if (isTargetZone(zoneId) == false) {
                     return;

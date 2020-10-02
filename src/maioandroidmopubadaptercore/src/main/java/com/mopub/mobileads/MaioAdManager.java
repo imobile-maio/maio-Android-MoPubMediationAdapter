@@ -30,6 +30,7 @@ public class MaioAdManager {
     private static MaioAdManager _instance;
     private final List<MaioAdsListenerInterface> _listeners = new ArrayList<>();
     private boolean _isInitialized = false;
+    private static final int initTimeout = 30000;
 
     public synchronized void init(@NonNull Activity activity,
                      @NonNull String mediaEid,
@@ -152,6 +153,11 @@ public class MaioAdManager {
         return _isInitialized;
     }
 
+    public int initTimeout() {
+        MaioUtils.trace();
+
+        return initTimeout;
+    }
 
     public boolean canShow(String zoneId) {
         MaioUtils.trace();
