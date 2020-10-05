@@ -32,6 +32,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
@@ -39,11 +40,11 @@ dependencies {
 
 
     dependencies {
-        implementation('com.mopub:mopub-sdk-fullscreen:5.13.1@aar') {
+        implementation('com.mopub:mopub-sdk-fullscreen:5.14.0@aar') {
             transitive = true
         }
     }
-    implementation 'com.maio:android-sdk:1.1.11@aar'
+    implementation 'com.maio:android-sdk:1.1.12@aar'
 }
 
 task deleteJar(type: Delete) {
