@@ -43,7 +43,7 @@
     ```gradle
     dependencies {
         implementation 'com.google.android.gms:play-services-ads:+'
-        implementation 'com.maio:android-sdk:1.1.9'
+        implementation 'com.maio:android-sdk:1.1.12'
     }
     ```
     - Add the following code to `AndroidManifest.xml`
@@ -66,3 +66,14 @@
 ## GDPR
 
 Maio does not currently support GDPR so setting `[PersonalInfoManager.forceGdprApplies()]` will stop you from receiving maio ads.
+
+## Initialization Timeout Setting
+
+Set the amount of time (milliseconds) to wait beforing timing out on the first call to load/loadRewardedVideo. 
+ 
+ ```
+   private static final int initTimeout = 30000;
+```
+
+ https://github.com/imobile-maio/maio-Android-MoPubMediationAdapter/blob/7366177c537772a30e91502eebc5f98bebb6b082/src/maioandroidmopubadaptercore/src/main/java/com/mopub/mobileads/MaioAdManager.java#L33
+
